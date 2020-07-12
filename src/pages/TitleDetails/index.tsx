@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'space-between',
       paddingLeft: 300,
       paddingRight: 300,
+    },
+    information: {
+      justifyContent: 'space-between',
     }
   }),
 )
@@ -60,7 +63,6 @@ const TitleDetails: React.FC = () => {
     const characters = await getCharactersByIds(
       title.characters.edges.map((v: any) => v.id)
     )
-    console.log('TitleDetails:React.FC -> characters', characters)
     setCharacters(characters)
   }, [characters, title])
 
@@ -75,7 +77,7 @@ const TitleDetails: React.FC = () => {
         <>
           <LeftPanelContainer>
             <img src={title.coverImage.extraLarge} className={classes.bannerImage} />
-            <Container>
+            <Container className={classes.information}>
               <TitleContainer>
                 {title.title.romaji}
               </TitleContainer>

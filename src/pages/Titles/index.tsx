@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Titles: React.FC = () => {
 
-  const history = useHistory();
+  const history = useHistory()
   const classes = useStyles()
   const [page, setPage] = React.useState(0)
   const [titles, setTitles] = React.useState<any>()
@@ -85,7 +85,7 @@ const Titles: React.FC = () => {
 
               </GridListTile>
             ))
-            :<LinearProgress className={classes.progressBar} />
+            : <LinearProgress className={classes.progressBar} />
           }
         </GridList>
       </RowContainer>

@@ -24,3 +24,27 @@ export async function getThreads (page: number, term?: string) {
   const response = await userActionForPost({ query }) 
   return response.data.Page.threads
 }
+
+export async function getThreadById (threadId: number) {
+  const query = `
+  query {
+      Thread(id: ${threadId}) {
+        id,
+        title,
+        body,
+        createdAt
+        replyCount,
+        viewCount,
+        user {
+          id
+          name
+          avatar {
+            medium
+          }
+        }
+      }
+  }
+  `
+  const response = await userActionForPost({ query }) 
+  return response.data.Thread
+}

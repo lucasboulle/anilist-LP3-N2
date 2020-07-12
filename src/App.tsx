@@ -7,6 +7,7 @@ import Threads from './pages/Threads';
 import { HeaderTitleContainer } from './styles/HeaderTitleContainer';
 import About from './pages/About';
 import TitleDetails from './pages/TitleDetails';
+import ThreadDetails from './pages/ThreadDetails';
 
 const titleStyle = {
   fontSize: 18, 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/threads" component={Threads} />
           <Route path="/about" component={About} />
           <Route path="/title-details/:titleId" component={TitleDetails} />
+          <Route path="/thread-details/:threadId" component={ThreadDetails} />
         </Switch>
       </Router>
       <GlobalStyle />

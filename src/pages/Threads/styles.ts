@@ -4,6 +4,8 @@ export const RowContainer = styled.div`
   color: #ffffff; 
   display: flex;
   justify-content: center;
+  padding-left: 30px;
+  padding-right: 30px;
 `;
 
 export const Container = styled.div`

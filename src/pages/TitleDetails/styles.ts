@@ -16,7 +16,6 @@ export const LeftPanelContainer = styled.div`
   display: flex;
 `;
 
-
 export const RightPanelContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -27,6 +26,7 @@ export const TextContainer = styled.div`
   display: flex;
   padding: 20px;
   font-size: 18px;
+  line-height: 1.6;
 `;
 
 export const TitleContainer = styled.div`

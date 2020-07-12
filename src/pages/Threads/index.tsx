@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import { Visibility, ChatBubble } from '@material-ui/icons';
 import { getThreads } from '../../api/ThreadResource';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,13 +45,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Threads: React.FC = () => {
 
+  const history = useHistory()
   const classes = useStyles()
   const [page, setPage] = React.useState(0)
   const [threads, setThreads] = React.useState<any>()
 
   const fetchThreads = React.useCallback(async (term?: string) => {
     const threads = await getThreads(page, term)
-    console.log(threads)
     setThreads(threads)
   }, [threads])
 
@@ -68,8 +69,11 @@ const Threads: React.FC = () => {
       <RowContainer>
         <GridList cellHeight={70} className={classes.gridList} cols={1}>
           {threads ?
-            threads.map((thread: any) => (
-              <GridListTile key={thread.id}>
+            threads.map((thread: any, index: number) => (
+              <GridListTile 
+                key={thread.id}
+                onClick={() => history.push(`/thread-details/${threads[index].id}`)}
+                >
                 <GridListTileBar
                   className={classes.gridListBar}
                   title={thread.title}
