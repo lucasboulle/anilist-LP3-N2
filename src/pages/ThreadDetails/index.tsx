@@ -65,7 +65,7 @@ const ThreadDetails: React.FC = () => {
   }, [])
 
   return (
-    <RowContainer>
+    <RowContainer className={classes.nickname}>
       {thread && comments
         ?
         <>
