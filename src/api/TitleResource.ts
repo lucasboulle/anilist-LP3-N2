@@ -49,3 +49,37 @@ export async function getTitles(page: number, term?: string) {
   const response = await userActionForPost({ query }) 
   return response.data.Page.media
 }
+
+export async function getTitleDetails(titleId: number) {
+  const query = `
+  query {
+      Media(id: ${titleId}) {
+        id
+        description
+        seasonYear
+        chapters
+        genres
+        startDate {
+          year
+          month
+          day
+        }
+        characters {
+          edges {
+            id
+          }
+        }
+        title {
+          romaji
+          native
+        }
+        coverImage {
+          extraLarge
+        }
+      }
+  }
+  `
+
+  const response = await userActionForPost({ query }) 
+  return response.data.Media
+}

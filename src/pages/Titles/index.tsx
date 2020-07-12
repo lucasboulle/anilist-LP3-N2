@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import { getTitles } from '../../api/TitleResource';
 import { InfoOutlined } from '@material-ui/icons';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Titles: React.FC = () => {
 
+  const history = useHistory();
   const classes = useStyles()
   const [page, setPage] = React.useState(0)
   const [titles, setTitles] = React.useState<any>()
@@ -65,14 +67,17 @@ const Titles: React.FC = () => {
       <RowContainer>
         <GridList cellHeight={180} className={classes.gridList} cols={3}>
           {titles ?
-            titles.map((title: any) => (
+            titles.map((title: any, index: number) => (
               <GridListTile key={title.id}>
                 <img src={title.bannerImage || title.coverImage.extraLarge}/>
                 <GridListTileBar
                   title={title.title.romaji}
                   subtitle={title.title.native}
                   actionIcon={
-                    <IconButton aria-label={`info about ${''}`} className={classes.icon}>
+                    <IconButton 
+                    className={classes.icon}
+                    onClick={() => history.push(`/title-details/${titles[index].id}`)}
+                    >
                       <InfoOutlined />
                     </IconButton>
                   }
