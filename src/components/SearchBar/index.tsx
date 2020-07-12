@@ -2,13 +2,37 @@ import React from 'react';
 import { Container } from './styles';
 import { MdSearch } from 'react-icons/md';
 import TextField from '@material-ui/core/TextField';
+import { IconButton, makeStyles, createStyles } from '@material-ui/core';
 
-const SearchBar: React.FC = () => {
-  const [text, setText] = React.useState<String>()
+interface Props {
+  onSearch: (text: string) => void
+}
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    iconButton: {
+      width: 50,
+      height: 50,
+      marginTop: 16,
+      marginRight: 5,
+    },
+  }),
+);
+
+
+const SearchBar = (props: Props) => {
+
+  const classes = useStyles()
+  const [text, setText] = React.useState<string>()
+
+  const onSubmit = React.useCallback(() => {
+    if(text) {
+      props.onSearch(text)
+    }
+  }, [text])
 
   return (
     <Container>
-      <MdSearch size={24} style={IconStyle} />
       <TextField
         id="standard-basic"
         label="Pesquisar"
@@ -16,6 +40,12 @@ const SearchBar: React.FC = () => {
         fullWidth={true}
         style={searchBarStyle}
       />
+      <IconButton
+        className={classes.iconButton}
+        onClick={onSubmit}
+      >
+        <MdSearch size={24} color={'#202020'} />
+      </IconButton>
     </Container>
   )
 }
